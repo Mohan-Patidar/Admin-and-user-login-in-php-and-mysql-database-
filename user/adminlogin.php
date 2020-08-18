@@ -42,7 +42,7 @@ if(isset($_POST['login'])){
         session_register("username");
         $_SESSION['name'] = $username;
          
-        header("location: dashboard.php");
+        header("location: retrieve.php");
        
       }
     else{
@@ -52,6 +52,6 @@ if(isset($_POST['login'])){
     }
 }
 ?>
-<a href='main.php'>Back</a>
+<a href='index.php'>Back</a>
 </body>
 </html>

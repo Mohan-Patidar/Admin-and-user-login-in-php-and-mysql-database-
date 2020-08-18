@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION["username"])){
+header("Location: adminlogin.php");
+exit(); }
+?>
+<?php
 
 include 'dbcon.php';
  
@@ -12,25 +18,36 @@ $result = mysqli_query ($conn,"Select * FROM user");
  <title> Retrive data</title>
  </head>
 <body>
+<p>Welcome <?php echo $_SESSION['username']; ?>....</p><br>
 <?php
 if (mysqli_num_rows($result) > 0) {
 ?>
   <table>
   
   <tr>
-    <td>username</td>
+    <td>id</td>
+    <td>User name</td>
     <td>Email id</td>
+    <td>Password</td>
+    <td>Delete</td>
+    <td>Update</td>
+    
   </tr>
 <?php
-$i=0;
+
 while($row = mysqli_fetch_array($result)) {
 ?>
 <tr>
-    <td><?php echo $row["username"]; ?></td>
-    <td><?php echo $row["email"]; ?></td>
+  <td><?php echo $row["id"]; ?></td>
+  <td><?php echo $row["username"]; ?></td>
+  <td><?php echo $row["email"]; ?></td>
+  <td><?php echo $row["password"]; ?></td>
+  
+  <td><button><a href ="delete.php?id=<?php echo $row["id"];?>">Delete</a></button></td>
+  <td><button><a href ="update.php?id=<?php echo $row["id"];?>">Update</a></button></td>
 </tr>
 <?php
-$i++;
+
 }
 ?>
 </table>
@@ -40,6 +57,7 @@ else{
     echo "No result found";
 }
 ?>
-<p><a href="index.php">Home</a></p>
+
+<a href="adminlogout.php">Logout</a>
  </body>
 </html>

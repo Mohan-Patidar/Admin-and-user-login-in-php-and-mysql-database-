@@ -39,7 +39,7 @@ and password ='".md5($password)."'";
 </form>
 <p>Not registered yet? <a href='userregister.php'>Register Here</a></p>
 
-
+<a href="index.php">Home</a>
 <?php } ?>
 </body>
 </html>
